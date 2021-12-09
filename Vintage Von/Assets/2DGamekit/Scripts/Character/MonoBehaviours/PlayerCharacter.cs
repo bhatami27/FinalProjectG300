@@ -1,8 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Principal;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 namespace Gamekit2D
 {
@@ -10,6 +11,8 @@ namespace Gamekit2D
     [RequireComponent(typeof(Animator))]
     public class PlayerCharacter : MonoBehaviour
     {
+        public GameObject canvasObject;
+        private int currentSceneIndex;
         static protected PlayerCharacter s_PlayerInstance;
         static public PlayerCharacter PlayerInstance { get { return s_PlayerInstance; } }
 
@@ -17,6 +20,7 @@ namespace Gamekit2D
         {
             get { return m_InventoryController; }
         }
+
 
         public SpriteRenderer spriteRenderer;
         public Damageable damageable;
@@ -114,6 +118,11 @@ namespace Gamekit2D
         //used in non alloc version of physic function
         protected ContactPoint2D[] m_ContactsBuffer = new ContactPoint2D[16];
 
+        public GameObject[] enemys;
+        public int randInt;
+
+        
+
         // MonoBehaviour Messages - called by Unity internally.
         void Awake()
         {
@@ -130,6 +139,8 @@ namespace Gamekit2D
 
         void Start()
         {
+
+
             hurtJumpAngle = Mathf.Clamp(hurtJumpAngle, k_MinHurtJumpAngle, k_MaxHurtJumpAngle);
             m_TanHurtJumpAngle = Mathf.Tan(Mathf.Deg2Rad * hurtJumpAngle);
             m_FlickeringWait = new WaitForSeconds(flickeringDuration);
@@ -165,7 +176,55 @@ namespace Gamekit2D
             {
                 m_CurrentPushables.Add(pushable);
             }
+
+            if(other.tag == "LB")
+            {
+                Destroy(other);
+
+                GameObject puzzleSet = GameObject.FindGameObjectWithTag("LB");
+                GameObject puzzle1Act = puzzleSet.GetComponent<BoxPuzzle>().puzzle1;
+                GameObject puzzle2Act = puzzleSet.GetComponent<BoxPuzzle>().puzzle2;
+                GameObject puzzle3Act = puzzleSet.GetComponent<BoxPuzzle>().puzzle3;
+                
+
+                randInt = Random.Range(1,3);
+
+                if(randInt == 1)
+                {
+                    puzzle1Act.SetActive(true);
+                    maxSpeed = 0;
+                    jumpSpeed = 0;
+                }
+                if(randInt == 2)
+                {
+                    puzzle2Act.SetActive(true);
+                    maxSpeed = 0;
+                    jumpSpeed = 0;
+                }
+                if(randInt == 3)
+                {
+                    puzzle3Act.SetActive(true);
+                    maxSpeed = 0;
+                    jumpSpeed = 0;
+                }
+
+                Destroy(other);
+            }
+
+            if(other.tag == "EndPoint")
+            {
+                SceneManager.LoadScene(4);
+            }
+
         }
+
+        void LoadPuzzle()
+        {
+            currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            PlayerPrefs.SetInt("SaveScene", currentSceneIndex);
+            SceneManager.LoadScene(1);
+        }
+
 
         void OnTriggerExit2D(Collider2D other)
         {
@@ -196,6 +255,19 @@ namespace Gamekit2D
                 {
                     Unpause();
                 }
+            }
+
+            GameObject puzzleSet = GameObject.FindGameObjectWithTag("LB");
+            GameObject puzzle1Act = puzzleSet.GetComponent<BoxPuzzle>().puzzle1;
+            GameObject puzzle2Act = puzzleSet.GetComponent<BoxPuzzle>().puzzle2;
+            GameObject puzzle3Act = puzzleSet.GetComponent<BoxPuzzle>().puzzle3;
+            ST_PuzzleDisplay puzzle1Set = puzzle1Act.GetComponent<ST_PuzzleDisplay>();
+            ST_PuzzleDisplay puzzle2Set = puzzle2Act.GetComponent<ST_PuzzleDisplay>();
+            ST_PuzzleDisplay puzzle3Set = puzzle3Act.GetComponent<ST_PuzzleDisplay>();
+            if(puzzle1Set.Complete || puzzle2Set.Complete || puzzle3Set.Complete)
+            {
+                maxSpeed = 10f;
+                jumpSpeed = 20f;
             }
         }
 

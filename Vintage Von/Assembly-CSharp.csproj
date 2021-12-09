@@ -90,7 +90,6 @@
      <Compile Include="Assets\2DGamekit\Scripts\Core\LayerMaskExtensions.cs" />
      <Compile Include="Assets\2DGamekit\Scripts\Core\ObjectPool.cs" />
      <Compile Include="Assets\2DGamekit\Scripts\Core\TimedDisabling.cs" />
-     <Compile Include="Assets\2DGamekit\Scripts\DoStartGame.cs" />
      <Compile Include="Assets\2DGamekit\Scripts\Effect\BossDoorStateManager.cs" />
      <Compile Include="Assets\2DGamekit\Scripts\Effect\DropShadow.cs" />
      <Compile Include="Assets\2DGamekit\Scripts\Effect\Grenade.cs" />
@@ -128,7 +127,6 @@
      <Compile Include="Assets\2DGamekit\Scripts\Timeline\ScrollingText\ScrollingTextClip.cs" />
      <Compile Include="Assets\2DGamekit\Scripts\Timeline\ScrollingText\ScrollingTextMixerBehaviour.cs" />
      <Compile Include="Assets\2DGamekit\Scripts\Timeline\ScrollingText\ScrollingTextTrack.cs" />
-     <Compile Include="Assets\2DGamekit\Scripts\ToPuzzle.cs" />
      <Compile Include="Assets\2DGamekit\Scripts\UI\HealthUI.cs" />
      <Compile Include="Assets\2DGamekit\Scripts\UI\InputDisplayUI.cs" />
      <Compile Include="Assets\2DGamekit\Scripts\UI\KeyUI.cs" />
@@ -179,10 +177,20 @@
      <Compile Include="Assets\2DGamekit\Utilities\DefaultPlayables\Video\VideoScriptPlayableTrack.cs" />
      <Compile Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
      <Compile Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
-     <Compile Include="Assets\BoxPuzzle.cs" />
-     <Compile Include="Assets\HyperLuminal\SlidingTilePuzzle\Scripts\ST_PuzzleDisplay.cs" />
-     <Compile Include="Assets\HyperLuminal\SlidingTilePuzzle\Scripts\ST_PuzzleTile.cs" />
-     <Compile Include="Assets\Timer.cs" />
+     <Compile Include="Assets\Kits\HyperLuminal\SlidingTilePuzzle\Scripts\ST_PuzzleDisplay.cs" />
+     <Compile Include="Assets\Kits\HyperLuminal\SlidingTilePuzzle\Scripts\ST_PuzzleTile.cs" />
+     <Compile Include="Assets\Scipts\BoxPuzzle.cs" />
+     <Compile Include="Assets\Scipts\CameraShakeIt.cs" />
+     <Compile Include="Assets\Scipts\DeathSound.cs" />
+     <Compile Include="Assets\Scipts\DoMainMenu.cs" />
+     <Compile Include="Assets\Scipts\DoStartGame.cs" />
+     <Compile Include="Assets\Scipts\DoStartLoadScreen.cs" />
+     <Compile Include="Assets\Scipts\GameStatus.cs" />
+     <Compile Include="Assets\Scipts\LoadInfo.cs" />
+     <Compile Include="Assets\Scipts\SaveInfo.cs" />
+     <Compile Include="Assets\Scipts\ShakeCameraCin.cs" />
+     <Compile Include="Assets\Scipts\Timer.cs" />
+     <Compile Include="Assets\Scipts\ToPuzzle.cs" />
      <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\2DGamekit\Utilities\Shaders\UnityStandardParticleShadow.cginc" />
      <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -191,6 +199,7 @@
      <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite-Animated.shader" />
      <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite.shader" />
+     <None Include="Assets\Design\the_gunslinger_waterdrop\Read Me Personal Use.txt" />
      <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Sprites\EmojiOne_License.txt" />
      <None Include="Assets\2DGamekit\Utilities\Fonts\Rajdhani\RajdhaniFontLicense.txt" />
@@ -213,6 +222,7 @@
      <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+     <None Include="Assets\Design\the_gunslinger_waterdrop\INDONESIA MOHON DIBACA.txt" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

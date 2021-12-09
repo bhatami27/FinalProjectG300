@@ -96,6 +96,8 @@ namespace Gamekit2D
         protected readonly int m_HashDeathPara = Animator.StringToHash("Death");
         protected readonly int m_HashGroundedPara = Animator.StringToHash("Grounded");
 
+        public int force = 1;
+
         private void Awake()
         {
             m_CharacterController2D = GetComponent<CharacterController2D>();
@@ -149,15 +151,42 @@ namespace Gamekit2D
             if (m_Dead)
                 return;
 
-            m_MoveVector.y = Mathf.Max(m_MoveVector.y - gravity * Time.deltaTime, - gravity);
+            m_MoveVector.y = Mathf.Max(m_MoveVector.y - gravity * Time.deltaTime * force, - gravity);
 
-            m_CharacterController2D.Move(m_MoveVector * Time.deltaTime);
+            m_CharacterController2D.Move(m_MoveVector * Time.deltaTime * force);
 
             m_CharacterController2D.CheckCapsuleEndCollisions();
 
             UpdateTimers();
 
             m_Animator.SetBool(m_HashGroundedPara, m_CharacterController2D.IsGrounded);
+
+            GameObject player = GameObject.Find("Ellen");
+            PlayerCharacter playerScipt = player.GetComponent<PlayerCharacter>();
+            if(playerScipt.randInt >=1 )
+            {
+                speed = 0;
+                meleeRange = 0;
+                attackDash = false;
+                viewDistance = 0;
+            }
+            
+            GameObject puzzleSet = GameObject.FindGameObjectWithTag("LB");
+            GameObject puzzle1Act = puzzleSet.GetComponent<BoxPuzzle>().puzzle1;
+            GameObject puzzle2Act = puzzleSet.GetComponent<BoxPuzzle>().puzzle2;
+            GameObject puzzle3Act = puzzleSet.GetComponent<BoxPuzzle>().puzzle3;
+            ST_PuzzleDisplay puzzle1Set = puzzle1Act.GetComponent<ST_PuzzleDisplay>();
+            ST_PuzzleDisplay puzzle2Set = puzzle2Act.GetComponent<ST_PuzzleDisplay>();
+            ST_PuzzleDisplay puzzle3Set = puzzle3Act.GetComponent<ST_PuzzleDisplay>();
+            if(puzzle1Set.Complete || puzzle2Set.Complete || puzzle3Set.Complete)
+            {
+                speed = 1;
+                meleeRange = 2;
+                attackDash = true;
+                viewDistance = 5;
+            }
+            
+
         }
 
         void UpdateTimers()
